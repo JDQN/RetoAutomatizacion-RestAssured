@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary"></span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">dic. 26, 2022 11:17:20 p. m.</span></a>
+<a href="#"><span class="badge badge-primary">dic. 27, 2022 04:24:41 p. m.</span></a>
 </li>
 </ul>
 </div>
@@ -81,7 +81,7 @@
           <div class="test-detail">
             <p class="name">Creacion de una reserba</p>
             <p class="text-sm">
-              <span>23:17:21</span> / <span>00:00:02:802</span>
+              <span>16:24:42</span> / <span>00:00:03:374</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -90,9 +90,9 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">Creacion de una reserba</h5>
-<span class='badge badge-success'>12.26.2022 23:17:21</span>
-<span class='badge badge-danger'>12.26.2022 23:17:24</span>
-<span class='badge badge-default'>00:00:02:802</span>
+<span class='badge badge-success'>12.27.2022 16:24:42</span>
+<span class='badge badge-danger'>12.27.2022 16:24:46</span>
+<span class='badge badge-default'>00:00:03:374</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -127,17 +127,43 @@
           </div>
         </div>
   </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="6"><span class="badge log pass-bg mr-2">Pass</span>02 - Como usuario del aplicativo restful-booker realizo una reserva no exitosa debido a que la fecha es pasada</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.booking.CreateBookingStepDefinition.queIngresaEnElFormularioDeReservaUnaFechaPasadaALaFechaPresente(java.lang.String,java.lang.String)">
+                <span>Given que ingresa en el formulario de reserva una fecha pasada "2022-11-06" a la fecha presente "2022-12-30"</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.booking.CreateBookingStepDefinition.aClickEnElBotonCrearReserva()">
+                <span>When da click en el boton crear reserva</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.booking.CreateBookingStepDefinition.reciboUnMensajeIndicandoQueLaFechaDeLaReservaEsIncorrecta()">
+                <span>Then recibo un mensaje indicando que la fecha de la reserva es incorrecta</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="6"
+        <li class="test-item"  status="pass" test-id="10"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">Ver todas las reservas creadas por los usuarios</p>
             <p class="text-sm">
-              <span>23:17:26</span> / <span>00:00:00:714</span>
+              <span>16:24:48</span> / <span>00:00:01:841</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -146,10 +172,10 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">Ver todas las reservas creadas por los usuarios</h5>
-<span class='badge badge-success'>12.26.2022 23:17:26</span>
-<span class='badge badge-danger'>12.26.2022 23:17:27</span>
-<span class='badge badge-default'>00:00:00:714</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+<span class='badge badge-success'>12.27.2022 16:24:48</span>
+<span class='badge badge-danger'>12.27.2022 16:24:50</span>
+<span class='badge badge-default'>00:00:01:841</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -160,7 +186,7 @@
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="7"><span class="badge log pass-bg mr-2">Pass</span>02 - Como admin reviso todas las reservas realizadas</div>
+        <div class="node" id="11"><span class="badge log pass-bg mr-2">Pass</span>03 - Como admin reviso todas las reservas realizadas</div>
       </div>
     </div>
         <div class="collapse">
@@ -177,6 +203,32 @@
               </div>
               <div class="step pass-bg" title="stepDefinitions.bookingAll.BookingAllStepDefinition.elRestfulBookerSistemaListaTodasLasReservasEncontradas()">
                 <span>Then el restful-booker sistema lista todas las reservas encontradas.</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="15"><span class="badge log pass-bg mr-2">Pass</span>04 - Como administrador necesito consultar las reservar hechas por cada usuario</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.bookingAll.BookingAllStepDefinition.queComoAdministradorDelAplicativoRestfulBookerNecesitoValidarDichasReservas()">
+                <span>Given que como administrador del aplicativo restful booker necesito validar dichas reservas</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.bookingAll.BookingAllStepDefinition.doyClickEnElBotonVerReserva()">
+                <span>When doy click en el boton ver reserva</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.bookingAll.BookingAllStepDefinition.elAplicativoRestfulBookerMuestraLasReservasEncontradas()">
+                <span>Then el aplicativo restful-booker muestra las reservas encontradas.</span>
       <div>
       </div>
               </div>
@@ -200,13 +252,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>dic. 26, 2022 11:17:20 p. m.</h3>
+<h3>dic. 27, 2022 04:24:41 p. m.</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>dic. 26, 2022 11:17:27 p. m.</h3>
+<h3>dic. 27, 2022 04:24:50 p. m.</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -257,7 +309,7 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>2</b> scenarios passed</small></div>
+<div><small data-tooltip='100%'><b>4</b> scenarios passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> scenarios failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -277,7 +329,7 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>6</b> steps passed</small></div>
+<div><small data-tooltip='100%'><b>12</b> steps passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> steps failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -296,7 +348,7 @@
 </div></div>
 <script>
 var timeline = {
-"Creacion de una reserba":2.802,"Ver todas las reservas creadas por los usuarios":0.714
+"Creacion de una reserba":3.374,"Ver todas las reservas creadas por los usuarios":1.841
 };
 </script>
 <div class="row">
@@ -310,13 +362,13 @@ failParent: 0,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
-passChild: 2,
+passChild: 4,
 failChild: 0,
 warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 6,
+passGrandChild: 12,
 failGrandChild: 0,
 warningGrandChild: 0,
 skipGrandChild: 0,

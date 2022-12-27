@@ -27,12 +27,19 @@ dependencies {
     //Todo: Reportaes
     implementation 'tech.grasshopper:extentreports-cucumber7-adapter:1.7.0'
 
+    //Todo: JavaFaker
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    //Todo: Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+
     testImplementation 'io.cucumber:cucumber-junit:7.10.1'
     implementation 'io.cucumber:cucumber-core:7.10.1'
     implementation 'io.cucumber:cucumber-java:7.10.1'
 
     implementation 'org.projectlombok:lombok:1.18.24'
     implementation 'com.github.javafaker:javafaker:1.0.2'
+
 }
 
 test {

@@ -8,8 +8,7 @@ Feature: Creacion de una reserba
       Then se recibira un mensaje de reserva creada exitosamente
 
 
-#    Scenario: 02 - Como usuario realizo un metodo POST no exitoso para hacer una reserva
-#      Given que ingresa los datos incorrectos en el body en formato Json
-#      And tengo un endpoint valido
-#      When se da click en el boton send se envia la peticion Post
-#      Then recibo un mensaje status 400.
+    Scenario: 02 - Como usuario del aplicativo restful-booker realizo una reserva no exitosa debido a que la fecha es pasada
+      Given que ingresa en el formulario de reserva una fecha pasada "2022-11-06" a la fecha presente "2022-12-30"
+      When da click en el boton crear reserva
+      Then recibo un mensaje indicando que la fecha de la reserva es incorrecta

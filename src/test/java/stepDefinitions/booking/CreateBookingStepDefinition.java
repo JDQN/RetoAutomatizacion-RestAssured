@@ -11,9 +11,14 @@ import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import runner.CreateBookingRunner;
 import stepDefinitions.setup.BaseTest;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.notNullValue;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /*
@@ -68,6 +73,54 @@ public class CreateBookingStepDefinition extends BaseTest {
                     .then()
                     .statusCode(HttpStatus.SC_OK)
                     .body("booking",notNullValue());
+        }catch (Exception exception){
+            Assertions.fail(exception.getMessage(),exception);
+            LOGGER.error(exception.getMessage(),exception);
+        }
+    }
+
+
+    //Scenario 2
+    @Given("que ingresa en el formulario de reserva una fecha pasada {string} a la fecha presente {string}")
+    public void queIngresaEnElFormularioDeReservaUnaFechaPasadaALaFechaPresente(String checkin, String checkout) {
+        try {
+            generalSetUp();
+            request =   given().body("{\n" +
+                    "    \"firstname\" : \"Jimi\",\n" +
+                    "    \"lastname\" : \"Brow\",\n" +
+                    "    \"totalprice\" : 111,\n" +
+                    "    \"depositpaid\" : true,\n" +
+                    "    \"bookingdates\" : {\n" +
+                    "        \"checkin\" : \""+checkin+"\",\n" +
+                    "        \"checkout\" : \""+checkout+"\"\n" +
+                    "    },\n" +
+                    "    \"additionalneeds\" : \"Breakfast\"\n" +
+                    "}");
+
+        } catch (Exception exception) {
+            Assertions.fail(exception.getMessage(),exception);
+            LOGGER.error(exception.getMessage(),exception);
+        }
+    }
+    @When("da click en el boton crear reserva")
+    public void aClickEnElBotonCrearReserva() {
+        try {
+            response = request.post();
+        }catch (Exception exception) {
+            Assertions.fail(exception.getMessage(),exception);
+            LOGGER.error(exception.getMessage(),exception);
+        }
+    }
+    @Then("recibo un mensaje indicando que la fecha de la reserva es incorrecta")
+    public void reciboUnMensajeIndicandoQueLaFechaDeLaReservaEsIncorrecta() {
+        try{
+            String checkin = response.body().jsonPath().getString("booking.bookingdates.checkin");
+            String checkout = response.body().jsonPath().getString("booking.bookingdates.checkout");
+            DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechaCheckin = fechaHora.parse(checkin);
+            Date fechaCheckout = fechaHora.parse(checkout);
+            Boolean respuesta = fechaCheckin.before(fechaCheckout);
+            assertTrue(respuesta);
         }catch (Exception exception){
             Assertions.fail(exception.getMessage(),exception);
             LOGGER.error(exception.getMessage(),exception);

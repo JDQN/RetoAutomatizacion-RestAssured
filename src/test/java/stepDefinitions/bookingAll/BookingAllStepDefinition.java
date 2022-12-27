@@ -11,11 +11,17 @@ import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import runner.BookingAllRunner;
 import runner.CreateBookingRunner;
+import stepDefinitions.booking.CreateBookingStepDefinition;
 import stepDefinitions.setup.BaseTest;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,17 +34,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BookingAllStepDefinition extends BaseTest {
 
     private static final Logger LOGGER = Logger.getLogger(BookingAllRunner.class);
-
-    private RequestSpecification request;
-
-    private Response response;
+    private RequestSpecification requestPost;
+    private Response responsPost;
+    private RequestSpecification requestGet;
+    private Response responseGet;
 
 
     @Given("que administrador del aplicativo restful booker")
     public void queAdministradorDelAplicativoRestfulBooker() {
         try{
             generalSetUp();
-            request = given();
+            requestPost = given();
         }catch(Exception exception){
             Assertions.fail(exception.getMessage(),exception);
             LOGGER.error(exception.getMessage(),exception);
@@ -47,7 +53,7 @@ public class BookingAllStepDefinition extends BaseTest {
     @When("doy click en el boton listar reservas")
     public void doyClickEnElBotonListarReservas() {
         try {
-            response = request.when().get();
+            responsPost = requestPost.when().get();
         }catch (Exception exception) {
             Assertions.fail(exception.getMessage(),exception);
             LOGGER.error(exception.getMessage(),exception);
@@ -56,8 +62,8 @@ public class BookingAllStepDefinition extends BaseTest {
     @Then("el restful-booker sistema lista todas las reservas encontradas.")
     public void elRestfulBookerSistemaListaTodasLasReservasEncontradas() {
         try{
-            response.then().assertThat().contentType(ContentType.JSON).statusCode(HttpStatus.SC_OK);
-            List<Integer> jsonResponse = response.jsonPath().getList("bookingid");
+            responsPost.then().assertThat().contentType(ContentType.JSON).statusCode(HttpStatus.SC_OK);
+            List<Integer> jsonResponse = responsPost.jsonPath().getList("bookingid");
             assertFalse(jsonResponse.contains(null));
             LOGGER.info(jsonResponse);
         }catch(Exception exception){
@@ -66,4 +72,42 @@ public class BookingAllStepDefinition extends BaseTest {
         }
     }
 
+
+    //Scenario 4
+    @Given("que como administrador del aplicativo restful booker necesito validar dichas reservas")
+    public void queComoAdministradorDelAplicativoRestfulBookerNecesitoValidarDichasReservas() {
+        try {
+            generalSetUp();
+            generarUsuario();
+            requestPost = given().body(bodyUser());
+            responsPost = requestPost.post();
+            requestGet = given();
+            LOGGER.info(responsPost.body().print());
+        }catch (Exception exception) {
+            Assertions.fail(exception.getMessage(),exception);
+            LOGGER.error(exception.getMessage(),exception);
+        }
+    }
+    @When("doy click en el boton ver reserva")
+    public void doyClickEnElBotonVerReserva() {
+        try{
+            String idBooking = responsPost.body().jsonPath().getString("bookingid");
+            responseGet = requestGet.get("/" + idBooking);
+        } catch (Exception exception){
+            Assertions.fail(exception.getMessage(),exception);
+            LOGGER.error(exception.getMessage(),exception);
+        }
+    }
+    @Then("el aplicativo restful-booker muestra las reservas encontradas.")
+    public void elAplicativoRestfulBookerMuestraLasReservasEncontradas() {
+        try{
+            String firstname = responseGet.body().jsonPath().getString("firstname");
+            String lastname = responseGet.body().jsonPath().getString("lastname");
+            Assertions.assertEquals(firstname,usuarioModel.getFirstName());
+            Assertions.assertEquals(lastname,usuarioModel.getLastName());
+        }catch(Exception exception){
+            Assertions.fail(exception.getMessage(),exception);
+            LOGGER.error(exception.getMessage(),exception);
+        }
+    }
 }
