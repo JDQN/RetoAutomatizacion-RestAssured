@@ -14,8 +14,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     //Todo: Cucumber
-    implementation 'io.cucumber:cucumber-junit:6.11.0'
-    implementation 'io.cucumber:cucumber-java:6.11.0'
+    implementation 'io.cucumber:cucumber-junit:7.10.0'
+    implementation 'io.cucumber:cucumber-java:7.10.0'
 
     //Todo: rest Assured
     testImplementation 'io.rest-assured:rest-assured:4.4.0'
@@ -23,6 +23,9 @@ dependencies {
 
     //Todo: Log4j
     implementation group:'log4j', name:'log4j', version:'1.2.17'
+
+    //Todo: Reportaes
+    implementation 'tech.grasshopper:extentreports-cucumber7-adapter:1.7.0'
 
     testImplementation 'io.cucumber:cucumber-junit:7.10.1'
     implementation 'io.cucumber:cucumber-core:7.10.1'

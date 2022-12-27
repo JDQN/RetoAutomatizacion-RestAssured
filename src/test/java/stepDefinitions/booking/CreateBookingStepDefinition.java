@@ -15,6 +15,13 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 
+
+/*
+ * La class CreateBookingStepDefinition permite interartuar con los stepDefinitions
+ * Y extends de BaseTest
+ * @Class BookingAllRunner
+ * @author <jdquimbayo72@misena.edu.co>
+ */
 public class CreateBookingStepDefinition extends BaseTest {
 
     private static final Logger LOGGER = Logger.getLogger(CreateBookingRunner.class);
@@ -27,7 +34,7 @@ public class CreateBookingStepDefinition extends BaseTest {
     @Given("que ingreso los datos correctos en el formulario")
     public void que_ingreso_los_datos_correctos_en_el_formulario() {
         try {
-            generalSetUpPost();
+            generalSetUp();
             request =   given().body("{\n" +
                     "    \"firstname\" : \"Jim\",\n" +
                     "    \"lastname\" : \"Brown\",\n" +
@@ -48,7 +55,7 @@ public class CreateBookingStepDefinition extends BaseTest {
     @When("se da click en el boton enviar")
     public void se_da_click_en_el_boton_enviar() {
         try{
-            response = request.post(BASE_PATH_POST);
+            response = request.post();
         } catch (Exception exception){
             Assertions.fail(exception.getMessage(),exception);
             LOGGER.error(exception.getMessage(),exception);
